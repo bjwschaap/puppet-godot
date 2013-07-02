@@ -1,4 +1,18 @@
-puppet-godot
+godot
 ============
+This module will install Nodejitsu's Godot event processor. Godot is a streaming real-time event processor based on Riemann written in Node.js.
+For more information on Godot see: http://blog.nodejitsu.com/waiting-for-godot 
 
-Puppet module for installing the Godot event-bus.
+This module has currently only been tested on Centos 6.5!
+
+License
+-------
+Apache License, Version 2.0
+
+Contact
+-------
+bastiaan.schaap@gmail.com
+
+Support
+-------
+Please log tickets and issues at my [Github page](https://github.com/bjwschaap/puppet-godot/issues)
