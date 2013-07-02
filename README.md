@@ -11,7 +11,7 @@ Apache License, Version 2.0
 
 Contact
 -------
-bastiaan.schaap@gmail.com
+See Github
 
 Support
 -------
