@@ -1,0 +1,64 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provides: godot
+# Required-Start: $all
+# Required-Stop: $all
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: starts the Godot event bus on Node.js server
+# Description: starts Godot using start-stop-daemon
+### END INIT INFO
+GODOT_HOME=<%= scope.lookupvar('godot::install_dir') %>
+RUNAS=<%= scope.lookupvar('godot::params::owner') %>
+PATH=/sbin:/bin:/usr/bin:/usr/local/bin
+
+do_start() {
+  echo "Start godot"
+  su $RUNAS -c "/usr/bin/node ${GODOT_HOME}/server/server.js >> ${GODOT_HOME}/logs/godot.log 2>&1 &"
+}
+do_stop() {
+  echo "Stop godot"
+  PID=`ps aux | grep node | grep -v grep | awk '{print $2}'`
+  kill -s SIGINT $PID
+}
+do_status() {
+  PID=`ps aux | grep node | grep -v grep | awk '{print $2}'`
+  if [ -z "$PID" ]
+  then
+    echo "Godot down"
+    exit 1
+  else
+    echo "Godot up"
+    exit 0
+  fi
+}
+do_restart() {
+  echo "Restart godot"
+  PID=`ps aux | grep node | grep -v grep | awk '{print $2}'`
+  kill -2 $PID
+}
+
+
+case "$1" in
+  start)
+        do_start
+        ;;
+  restart)
+        do_restart
+        ;;
+  reload|force-reload)
+        echo "Error: argument '$1' not supported" >&2
+        exit 2
+        ;;
+  stop)
+        do_stop
+        ;;
+  status)
+        do_status
+        exit $?
+        ;;
+  *)
+        echo "Usage: run.sh [start|stop|restart|status]" >&2
+        exit 2
+        ;;
+esac

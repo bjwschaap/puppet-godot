@@ -1,0 +1,10 @@
+name          'puppet-godot'
+version       '0.0.1'
+source        'UNKNOWN'
+author        'bjwschaap'
+license       'Apache License, Version 2.0'
+summary       'This module installs Godot.js'
+description   'Godot is a streaming real-time event processor based on Riemann written in Node.js. For more information on Godot see: http://blog.nodejitsu.com/waiting-for-godot'
+project_page  'https://github.com/bjwschaap/puppet-godot'
+
+dependency 'puppetlabs/stdlib'

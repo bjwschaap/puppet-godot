@@ -1,0 +1,3 @@
+---
+logrotate::basedir: /kvk
+basedir: '/kvk'
